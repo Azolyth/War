@@ -4,14 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./index.css" />
     <title>War</title>
   </head>
   <body>
-    <h1>War</h1>
-    <button id="new-deck" type="button">New Deck</button>
-    <button id="draw-cards" type="button">Draw</button>
-    <div id="cards"></div>
+    <div class="container">
+      <button class="new-deck" id="new-deck" type="button">New Deck</button>
+
+      <div id="cards"></div>
+
+      <button class="draw-cards" id="draw-cards" type="button">Draw</button>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>

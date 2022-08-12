@@ -17,14 +17,14 @@ const drawCards = () => {
   fetch(`${baseUrl}/${deckId}/draw/?count=2`)
     .then(response => response.json())
     .then(data => {
-      const firstCardImage = data.cards[0].image;
-      const secondCardImage = data.cards[1].image;
+      const firstCard = data.cards[0].image;
+      const secondCard = data.cards[1].image;
 
       document.getElementById('cards').innerHTML = `
-        <img src="${firstCardImage}" >
-        <img src="${secondCardImage}">
+      <img class="first-card" src=${firstCard} >
+      <img class="second-card" src=${secondCard}>
         `;
-      console.log(firstCardImage, secondCardImage);
+      console.log(firstCard, secondCard);
     });
 };
 

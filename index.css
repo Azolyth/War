@@ -5,9 +5,52 @@
 body {
   margin: 0;
   padding: 0;
+  background-image: url(./img/table.png);
+  background-size: cover;
 }
 
-img {
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  width: 575px;
+  max-width: 100%;
+  height: 100vh;
+}
+
+#cards {
+  margin: 7em auto;
+  min-width: 90%;
+}
+
+.first-card,
+.second-card {
+  margin: 1em auto;
   display: block;
-  margin-bottom: 20px;
+}
+
+.new-deck,
+.draw-cards {
+  background: gold;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.new-deck {
+  font-size: 1.1rem;
+  margin-top: 1em;
+  padding: 0.4em 0.7em;
+  position: absolute;
+  display: inline-block;
+  font-family: 'Exo', sans-serif;
+}
+.draw-cards {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  font-size: 1.2rem;
+  font-family: 'Exo', sans-serif;
 }
