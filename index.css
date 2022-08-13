@@ -20,31 +20,20 @@ body {
   height: 100vh;
 }
 
-#cards {
-  margin: 7em auto;
-  min-width: 90%;
-}
-
-.first-card,
-.second-card {
-  margin: 1em auto;
-  display: block;
-}
-
 .new-deck,
 .draw-cards {
   background: gold;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  box-shadow: 0.1px 0.1px 10px #222;
 }
 
 .new-deck {
   font-size: 1.1rem;
-  margin-top: 1em;
+  margin-top: 0.7em;
   padding: 0.4em 0.7em;
-  position: absolute;
-  display: inline-block;
+  align-self: flex-start;
   font-family: 'Exo', sans-serif;
 }
 .draw-cards {
@@ -53,4 +42,16 @@ body {
   padding: 1em;
   font-size: 1.2rem;
   font-family: 'Exo', sans-serif;
+}
+
+.card-slot {
+  margin: 0 auto;
+  border: 1px solid #222;
+  height: 314px;
+  width: calc(314px * 5 / 7);
+  border-radius: 7px;
+}
+
+.card-slot:nth-of-type(1) {
+  margin-bottom: 2.2em;
 }

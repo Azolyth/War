@@ -3,13 +3,13 @@
 let deckId;
 
 const baseUrl = 'https://apis.scrimba.com/deckofcards/api/deck/';
+const cardSlots = document.getElementById('cards');
 
 const handleClick = () => {
   fetch(`${baseUrl}/new/shuffle/`)
     .then(response => response.json())
     .then(data => {
       deckId = data.deck_id;
-      console.log(deckId);
     });
 };
 
@@ -20,11 +20,12 @@ const drawCards = () => {
       const firstCard = data.cards[0].image;
       const secondCard = data.cards[1].image;
 
-      document.getElementById('cards').innerHTML = `
-      <img class="first-card" src=${firstCard} >
-      <img class="second-card" src=${secondCard}>
+      cardSlots.children[0].innerHTML = `
+        <img class="card" src=${firstCard} />
         `;
-      console.log(firstCard, secondCard);
+      cardSlots.children[1].innerHTML = `
+        <img class="card" src=${secondCard} />
+        `;
     });
 };
 
