@@ -1,29 +1,35 @@
 'use strict';
-
+// API
 let deckId;
 const baseUrl = 'https://apis.scrimba.com/deckofcards/api/deck/';
+// HTML Elements
 const cardSlots = document.getElementById('cards');
+const gameMessageEl = document.getElementById('game-message');
+const cardsRemainingEl = document.getElementById('cards-remaining');
+// Buttons
 const drawButton = document.getElementById('draw-cards');
+const newDeck = document.getElementById('new-deck');
+// Score
+let computerScore = 0;
+let playerScore = 0;
+const computerScoreEl = document.getElementById('computer-score');
+const playerScoreEl = document.getElementById('player-score');
 
-const handleClick = () => {
-  fetch(`${baseUrl}/new/shuffle/`)
-    .then((response) => response.json())
-    .then((data) => {
-      deckId = data.deck_id;
-      remainingCards(data);
-    });
+const handleClick = async () => {
+  const response = await fetch(`${baseUrl}/new/shuffle/`);
+  const data = await response.json();
+  deckId = data.deck_id;
+  remainingCards(data);
 };
 
-const drawCards = () => {
-  fetch(`${baseUrl}/${deckId}/draw/?count=2`)
-    .then((response) => response.json())
-    .then((data) => {
-      const computerCardData = data.cards[0];
-      const playerCardData = data.cards[1];
-      remainingCards(data);
-      determineWinner(computerCardData, playerCardData);
-      renderCard(computerCardData.image, playerCardData.image);
-    });
+const drawCards = async () => {
+  const response = await fetch(`${baseUrl}/${deckId}/draw/?count=2`);
+  const data = await response.json();
+  const computerCardData = data.cards[0];
+  const playerCardData = data.cards[1];
+  gameMessageEl.textContent = determineWinner(computerCardData, playerCardData);
+  remainingCards(data);
+  renderCard(computerCardData.image, playerCardData.image);
 };
 
 const renderCard = (firstCard, secondCard) => {
@@ -41,21 +47,36 @@ const determineWinner = (firstCard, secondCard) => {
   const computerCard = cardValues.indexOf(firstCard.value);
   const playerCard = cardValues.indexOf(secondCard.value);
 
-  let gameMessage = '';
   if (computerCard > playerCard) {
-    gameMessage = 'Computer Wins!';
+    computerScore++;
+    computerScoreEl.textContent = `Computer Score: ${computerScore}`;
+    return 'Computer Wins!';
   } else if (computerCard < playerCard) {
-    gameMessage = 'Player Wins!';
+    playerScore++;
+    playerScoreEl.textContent = `Your Score: ${playerScore}`;
+    return 'Player Wins!';
   } else {
-    gameMessage = 'WAR!';
+    return 'WAR!';
   }
-  return (document.getElementById('game-message').textContent = gameMessage);
 };
 
 const remainingCards = (data) => {
-  data.remaining <= 0 ? (drawButton.disabled = true) : (drawButton.disabled = false);
-  document.getElementById('cards-remaining').textContent = `Cards Remaining: ${data.remaining}`;
+  data.remaining <= 0 ? (drawButton.disabled = true) : '';
+
+  let winnerMessage = '';
+  if (data.remaining === 0) {
+    drawButton.disabled = true;
+    if (computerScore > playerScore && data.remaining === 0) {
+      winnerMessage = 'Computer won the game!';
+    } else if (computerScore < playerScore && data.remaining === 0) {
+      winnerMessage = 'Player won the game!';
+    } else {
+      winnerMessage = 'WAR!';
+    }
+  }
+  gameMessageEl.textContent = winnerMessage;
+  cardsRemainingEl.textContent = `Cards Remaining: ${data.remaining}`;
 };
 
 drawButton.addEventListener('click', drawCards);
-document.getElementById('new-deck').addEventListener('click', handleClick);
+newDeck.addEventListener('click', handleClick);
