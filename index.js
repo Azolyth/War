@@ -3,6 +3,7 @@
 let deckId;
 const baseUrl = 'https://apis.scrimba.com/deckofcards/api/deck/';
 const cardSlots = document.getElementById('cards');
+const drawButton = document.getElementById('draw-cards');
 
 const handleClick = () => {
   fetch(`${baseUrl}/new/shuffle/`)
@@ -52,8 +53,9 @@ const determineWinner = (firstCard, secondCard) => {
 };
 
 const remainingCards = (data) => {
+  data.remaining <= 0 ? (drawButton.disabled = true) : (drawButton.disabled = false);
   document.getElementById('cards-remaining').textContent = `Cards Remaining: ${data.remaining}`;
 };
 
+drawButton.addEventListener('click', drawCards);
 document.getElementById('new-deck').addEventListener('click', handleClick);
-document.getElementById('draw-cards').addEventListener('click', drawCards);
