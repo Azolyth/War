@@ -13,6 +13,7 @@ body {
 
 .container {
   margin: 0 auto;
+  padding: 0.4em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,7 +34,6 @@ h2 {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 0.1px 0.1px 10px #222;
 }
 
 .new-deck {
@@ -44,11 +44,15 @@ h2 {
   font-family: 'Exo', sans-serif;
 }
 .draw-cards {
-  display: block;
   width: 100%;
   padding: 1em;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: 'Exo', sans-serif;
+}
+
+.draw-cards:active,
+.new-deck:active {
+  background: rgb(236, 208, 45);
 }
 
 .card-slot {
@@ -61,4 +65,20 @@ h2 {
 
 .card-slot:nth-of-type(1) {
   margin-bottom: 2.2em;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+.container-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-height: 900px) {
+  #cards {
+    display: flex;
+  }
 }
