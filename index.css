@@ -55,6 +55,10 @@ h2 {
   background: rgb(236, 208, 45);
 }
 
+.draw-cards:disabled {
+  cursor: not-allowed;
+}
+
 .card-slot {
   margin: 0 auto;
   border: 1px solid #222;
