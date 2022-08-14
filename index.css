@@ -5,8 +5,10 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url(./img/table.png);
+  color: #fff;
   background-size: cover;
+  font-family: 'Exo', sans-serif;
+  background-image: url(./img/table.png);
 }
 
 .container {
@@ -18,6 +20,11 @@ body {
   width: 575px;
   max-width: 100%;
   height: 100vh;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2.4rem;
 }
 
 .new-deck,
